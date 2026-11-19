@@ -1,0 +1,42 @@
+
+services:
+  - type: web
+    name: fishtank-api-handover
+    runtime: node
+    plan: free
+    branch: main
+
+    buildCommand: npm install
+    startCommand: npm start
+
+    autoDeployTrigger: off
+
+    envVars:
+      # API 驗證
+      - key: API_KEY
+        sync: false
+
+      # MongoDB Atlas
+      - key: MONGO_URI
+        sync: false
+
+      # MQTT Broker
+      - key: MQTT_URL
+        sync: false
+
+      - key: MQTT_USERNAME
+        sync: false
+
+      - key: MQTT_PASSWORD
+        sync: false
+
+      - key: MQTT_DEVICE_ID
+        value: fish_Tank_001
+
+      # Firebase Admin SDK
+      - key: GOOGLE_APPLICATION_CREDENTIALS
+        value: /etc/secrets/firebase-service-account.json
+
+      # 系統時區
+      - key: TZ
+        value: Asia/Taipei
